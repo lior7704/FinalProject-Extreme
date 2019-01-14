@@ -15,7 +15,7 @@ public class Test
      */
     public static void main(String[] args) throws IOException
     {
-    	//// Lonely Planet Search
+    	/// Lonely Planet Search
    /*   Spider spider = new Spider();
         ArrayList<String> searchParams = new ArrayList<String>();
         searchParams.add("china");
@@ -23,7 +23,7 @@ public class Test
         searchParams.add("panda");
         spider.search(Utils.LONELY_PLANET, Utils.LONELYPLANET_SITE+searchParams.get(0)+Utils.LONELYPLANET_PREFIX, searchParams); */
     	
-    	//// Lonely Planet Search
+    	/// Lonely Planet Search
     	Spider spider = new Spider();
     	ArrayList<String> searchParams = new ArrayList<String>();
     	searchParams.add("france");
