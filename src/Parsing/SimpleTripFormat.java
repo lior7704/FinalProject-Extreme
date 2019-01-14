@@ -1,23 +1,29 @@
 package Parsing;
 
 public class SimpleTripFormat extends TripFormat{
+	private String name;
 	private String location;
 	private float rating;
 	private int numReviews;
 	private String image;
 	private String description;
 	
-	public SimpleTripFormat(String html) {
-		
-	}
-	
-	public SimpleTripFormat(String location, float rating, int numReviews, String image, String description) {
+	public SimpleTripFormat(String name, String location, float rating, int numReviews, String image, String description) {
 		super();
+		this.name = name;
 		this.location = location;
 		this.rating = rating;
 		this.numReviews = numReviews;
 		this.image = image;
 		this.description = description;
+	}
+	
+	public String getName() {
+		return location;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getLocation() {

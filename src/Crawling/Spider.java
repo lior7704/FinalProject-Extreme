@@ -1,4 +1,5 @@
 package Crawling;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,11 +7,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+
 public class Spider {
+	private static final String STRIDE = "STRIDE";
+	private static final String LONELY_PLANET = "LONELY_PLANET";
 	private static final int MAX_PAGES_TO_SEARCH = 1000;
 	private static final int MAX_PAGES_TO_GRAB = 40;
 	private Set<String> pagesVisited = new HashSet<String>();
 	private List<String> pagesToVisit = new LinkedList<String>();
+	private String site;
+	
+	public Spider(String site) {
+		this.site = site;
+	}
 
 	/**
 	 * Our main launching point for the Spider's functionality. Internally it
@@ -40,7 +49,7 @@ public class Spider {
 				}
 			}
 			// Get page if body matches parameters
-			if (currentUrl.contains("/trips")) {
+			if (currentUrl.contains("/attractions") /*|| currentUrl.contains("/activities")*/) {
 				body = leg.searchForWord(searchParams);
 				if (body != null) // parsing
 				{
@@ -57,14 +66,11 @@ public class Spider {
 	}
 
 	private boolean checkCrawl(String currentUrl, ArrayList<String> searchParams) {
-		if (!currentUrl.contains("#") && !currentUrl.contains(".html")) {
-			if (searchParams.size() == 1) {
-				if (currentUrl.contains(searchParams.get(0)) && !currentUrl.contains("?"))
-					return true;
-			} else if (currentUrl.contains(searchParams.get(0))
-					|| currentUrl.contains("?") && containsParams(currentUrl, searchParams)) {
-				return true;
-			}
+		if(this.site.equals(LONELY_PLANET))  {
+			return checkLonelyPlanet(currentUrl, searchParams);
+		}
+		if(this.site.equals(STRIDE)) {
+			return checkStride(currentUrl, searchParams);
 		}
 		return false;
 	}
@@ -76,7 +82,34 @@ public class Spider {
 		}
 		return true;
 	}
-
+	
+	private boolean checkStride(String currentUrl, ArrayList<String> searchParams) {
+		if (!currentUrl.contains("#") && !currentUrl.contains(".html")) {
+			return otherValidations(currentUrl, searchParams);
+		}
+		return false;
+	}
+	
+	private boolean checkLonelyPlanet(String currentUrl, ArrayList<String> searchParams) {
+		if(!currentUrl.contains("#") && !currentUrl.contains(".html") && !currentUrl.contains("restaurants")
+				&& !currentUrl.contains("activities") && !currentUrl.contains("hotels")
+				&& !currentUrl.contains("community")) {
+			return otherValidations(currentUrl, searchParams);
+		}
+		return false;
+	}
+	
+	private boolean otherValidations(String currentUrl, ArrayList<String> searchParams) {
+		if (searchParams.size() == 1) {
+			if (currentUrl.contains(searchParams.get(0)) && !currentUrl.contains("?"))
+				return true;
+		} else if (currentUrl.contains(searchParams.get(0))
+				|| currentUrl.contains("?") && containsParams(currentUrl, searchParams)) {
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Returns the next URL to visit (in the order that they were found). We also do
 	 * a check to make sure this method doesn't return a URL that has already been

@@ -13,10 +13,11 @@ public class Test
      */
     public static void main(String[] args) throws IOException
     {
-        Spider spider = new Spider();
+        Spider spider = new Spider("http://stridetravel.com/");
         ArrayList<String> searchParams = new ArrayList<String>();
         searchParams.add("china");
-        //searchParams.add("group");
+        searchParams.add("group");
+        searchParams.add("panda");
         spider.search("http://stridetravel.com/", searchParams);
     }
 }
