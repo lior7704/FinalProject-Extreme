@@ -7,19 +7,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import ExtremeUtils.Utils;
+
 
 public class Spider {
-	private static final String STRIDE = "STRIDE";
-	private static final String LONELY_PLANET = "LONELY_PLANET";
 	private static final int MAX_PAGES_TO_SEARCH = 1000;
 	private static final int MAX_PAGES_TO_GRAB = 40;
 	private Set<String> pagesVisited = new HashSet<String>();
 	private List<String> pagesToVisit = new LinkedList<String>();
 	private String site;
 	
-	public Spider(String site) {
+	/*public Spider(String site) {
 		this.site = site;
-	}
+	}*/
 
 	/**
 	 * Our main launching point for the Spider's functionality. Internally it
@@ -30,7 +30,8 @@ public class Spider {
 	 * @param     searchParms[]0 - The word or string that you are searching for
 	 * @throws IOException
 	 */
-	public void search(String url, ArrayList<String> searchParams) throws IOException {
+	public void search(String site, String url, ArrayList<String> searchParams) throws IOException {
+		this.site = site;
 		String currentUrl;
 		String body;
 		int numPagesGrabbed = 0;
@@ -49,7 +50,8 @@ public class Spider {
 				}
 			}
 			// Get page if body matches parameters
-			if (currentUrl.contains("/attractions") /*|| currentUrl.contains("/activities")*/) {
+			if (this.site.equals(Utils.LONELY_PLANET) && currentUrl.contains("/attractions") || 
+					this.site.equals(Utils.STRIDE) && currentUrl.contains("/trips")) {
 				body = leg.searchForWord(searchParams);
 				if (body != null) // parsing
 				{
@@ -66,10 +68,10 @@ public class Spider {
 	}
 
 	private boolean checkCrawl(String currentUrl, ArrayList<String> searchParams) {
-		if(this.site.equals(LONELY_PLANET))  {
+		if(this.site.equals(Utils.LONELY_PLANET))  {
 			return checkLonelyPlanet(currentUrl, searchParams);
 		}
-		if(this.site.equals(STRIDE)) {
+		if(this.site.equals(Utils.STRIDE)) {
 			return checkStride(currentUrl, searchParams);
 		}
 		return false;

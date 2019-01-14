@@ -55,6 +55,7 @@ public class SpiderLeg
         catch(IOException ioe)
         {
             // We were not successful in our HTTP request
+        	ioe.printStackTrace();
             return false;
         }
     }

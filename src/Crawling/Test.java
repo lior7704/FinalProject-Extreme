@@ -2,6 +2,8 @@ package Crawling;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import ExtremeUtils.Utils;
+
 public class Test
 {
     /**
@@ -13,11 +15,18 @@ public class Test
      */
     public static void main(String[] args) throws IOException
     {
-        Spider spider = new Spider("http://stridetravel.com/");
+    	//// Lonely Planet Search
+   /*   Spider spider = new Spider();
         ArrayList<String> searchParams = new ArrayList<String>();
         searchParams.add("china");
         searchParams.add("group");
         searchParams.add("panda");
-        spider.search("http://stridetravel.com/", searchParams);
+        spider.search(Utils.LONELY_PLANET, Utils.LONELYPLANET_SITE+searchParams.get(0)+Utils.LONELYPLANET_PREFIX, searchParams); */
+    	
+    	//// Lonely Planet Search
+    	Spider spider = new Spider();
+    	ArrayList<String> searchParams = new ArrayList<String>();
+    	searchParams.add("france");
+    	spider.search(Utils.STRIDE_SITE, Utils.STRIDE_SITE+searchParams.get(0), searchParams);
     }
 }
