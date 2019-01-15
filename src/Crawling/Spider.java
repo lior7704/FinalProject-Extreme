@@ -10,6 +10,7 @@ import java.util.Set;
 import ExtremeUtils.Utils;
 import Parsing.Converters;
 import Parsing.SimpleTripFormat;
+import Parsing.TripFormat;
 
 public class Spider {
 	private static final int MAX_PAGES_TO_SEARCH = 1000;
@@ -17,6 +18,7 @@ public class Spider {
 	private Set<String> pagesVisited = new HashSet<String>();
 	private List<String> pagesToVisit = new LinkedList<String>();
 	private String site;
+	private List<TripFormat> trips = new ArrayList<TripFormat>();
 
 	/**
 	 * Our main launching point for the Spider's functionality. Internally it
@@ -27,7 +29,7 @@ public class Spider {
 	 * @param     searchParms[]0 - The word or string that you are searching for
 	 * @throws IOException
 	 */
-	public void search(String site, String url, ArrayList<String> searchParams) throws IOException {
+	public List<TripFormat> search(String site, String url, ArrayList<String> searchParams) throws IOException {
 		this.site = site;
 		String currentUrl;
 		String body;
@@ -61,7 +63,7 @@ public class Spider {
 					} else {
 						currTrip = Converters.strideConverter(currentUrl);
 					}
-					System.out.println(currTrip);
+					trips.add(currTrip);
 					if (numPagesGrabbed == MAX_PAGES_TO_GRAB)
 						break;
 				}
@@ -70,6 +72,7 @@ public class Spider {
 		}
 		System.out.println("\n**Done** Visited " + this.pagesVisited.size() + " web page(s)");
 		System.out.println("Pages grabbed:" + numPagesGrabbed);
+		return trips;
 	}
 
 	private boolean checkCrawl(String currentUrl, ArrayList<String> searchParams) {

@@ -1,8 +1,10 @@
 package Crawling;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import ExtremeUtils.Utils;
+import Parsing.TripFormat;
 
 public class Test
 {
@@ -15,19 +17,21 @@ public class Test
      */
     public static void main(String[] args) throws IOException
     {
+    	List<TripFormat> trips;
     	/// Lonely Planet Search
         /*Spider spider = new Spider();
         ArrayList<String> searchParams = new ArrayList<String>();
         searchParams.add("china");
         searchParams.add("group");
         searchParams.add("panda");
-        spider.search(Utils.LONELY_PLANET, Utils.LONELYPLANET_SITE+searchParams.get(0)+Utils.LONELYPLANET_PREFIX, searchParams); 
+        trips = spider.search(Utils.LONELY_PLANET, Utils.LONELYPLANET_SITE+searchParams.get(0)+Utils.LONELYPLANET_PREFIX, searchParams); 
     	*/
     	/// Lonely Planet Search
         Spider spider = new Spider();
     	ArrayList<String> searchParams = new ArrayList<String>();
     	searchParams.add("france");
-    	spider.search(Utils.STRIDE, Utils.STRIDE_SITE+searchParams.get(0), searchParams);
+    	trips = spider.search(Utils.STRIDE, Utils.STRIDE_SITE+searchParams.get(0), searchParams);
     	
+    	System.out.println(trips);
     }
 }
