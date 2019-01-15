@@ -31,10 +31,10 @@ public class SpiderLeg {
 			Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
 			Document htmlDocument = connection.get();
 			this.htmlDocument = htmlDocument;
-			if (connection.response().statusCode() == 200) // 200 is the HTTP OK status code
-															// indicating that everything is great.
+			if (connection.response().statusCode() != 200) 
 			{
-				//System.out.println("\n**Visiting** Received web page at " + url);
+				System.out.println("**Failure** Connection problem. Error code: " + connection.response().statusCode());
+				return false;
 			}
 			if (!connection.response().contentType().contains("text/html")) {
 				System.out.println("**Failure** Retrieved something other than HTML");
