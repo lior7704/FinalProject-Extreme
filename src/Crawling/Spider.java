@@ -7,7 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.sun.javafx.scene.layout.region.Margins.Converter;
+
 import ExtremeUtils.Utils;
+import Parsing.Converters;
+import Parsing.SimpleTripFormat;
 
 
 public class Spider {
@@ -57,6 +61,8 @@ public class Spider {
 				{
 					System.out.println(String.format("**Success** Word %s found at %s", searchParams, currentUrl));
 					numPagesGrabbed++;
+					SimpleTripFormat currTrip = Converters.lonleyPlanetConverter(currentUrl);
+					System.err.println(currTrip);
 					if (numPagesGrabbed == MAX_PAGES_TO_GRAB)
 						break;
 				}

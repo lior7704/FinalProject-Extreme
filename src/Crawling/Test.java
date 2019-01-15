@@ -24,9 +24,10 @@ public class Test
         spider.search(Utils.LONELY_PLANET, Utils.LONELYPLANET_SITE+searchParams.get(0)+Utils.LONELYPLANET_PREFIX, searchParams); 
     	
     	/// Lonely Planet Search
-    /*	Spider spider = new Spider();
+        /*Spider spider = new Spider();
     	ArrayList<String> searchParams = new ArrayList<String>();
     	searchParams.add("france");
-    	spider.search(Utils.STRIDE_SITE, Utils.STRIDE_SITE+searchParams.get(0), searchParams);*/
+    	spider.search(Utils.STRIDE, Utils.STRIDE_SITE+searchParams.get(0), searchParams);
+    	*/
     }
 }

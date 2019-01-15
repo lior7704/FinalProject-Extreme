@@ -65,4 +65,10 @@ public class SimpleTripFormat extends TripFormat{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	@Override
+	public String toString() {
+		return "SimpleTripFormat \nname: " + name + "\n location: " + location + "\n rating: " + rating + "\n numReviews: "
+				+ numReviews + "\n image: " + image + "\n description: " + description;
+	}
 }
