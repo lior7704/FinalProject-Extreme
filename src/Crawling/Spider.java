@@ -50,7 +50,7 @@ public class Spider {
 				}
 			}
 			// Get page if body matches parameters
-			if (this.site.equals(Utils.LONELY_PLANET) && currentUrl.contains("/attractions") || 
+			if (this.site.equals(Utils.LONELY_PLANET) && currentUrl.contains("/attractions") && !currentUrl.contains("/attractions/a/") || 
 					this.site.equals(Utils.STRIDE) && currentUrl.contains("/trips")) {
 				body = leg.searchForWord(searchParams);
 				if (body != null) // parsing
@@ -86,7 +86,7 @@ public class Spider {
 	}
 	
 	private boolean checkStride(String currentUrl, ArrayList<String> searchParams) {
-		if (!currentUrl.contains("#") && !currentUrl.contains(".html")) {
+		if (!currentUrl.contains("#") && !currentUrl.contains(".html") && currentUrl.contains("stridetravle.com")) {
 			return otherValidations(currentUrl, searchParams);
 		}
 		return false;
