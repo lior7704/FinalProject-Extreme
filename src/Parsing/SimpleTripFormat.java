@@ -68,7 +68,7 @@ public class SimpleTripFormat extends TripFormat{
 
 	@Override
 	public String toString() {
-		return "SimpleTripFormat \nname: " + name + "\n location: " + location + "\n rating: " + rating + "\n numReviews: "
-				+ numReviews + "\n image: " + image + "\n description: " + description;
+		return "SimpleTripFormat \n name: " + name + "\n location: " + location + "\n rating: " + rating + "\n numReviews: "
+				+ numReviews + "\n image: " + image + "\n description: " + description + "\n";
 	}
 }

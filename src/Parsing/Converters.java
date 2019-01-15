@@ -21,10 +21,11 @@ public class Converters {
 			String name = title.text();
 			Element text = doc.select("p").get(1);
 			String desc = text.text();
-			String location = null;
 			String body = doc.select("body").first().data();
-			String image = (body.substring(body.indexOf("image")));
+			String image = body.substring(body.indexOf("image"));
 			image = image.substring(8, image.indexOf(".jpg") + 4);
+			String location = body.substring(body.indexOf("addressLocality"));
+			location = location.substring(18, location.indexOf(",") - 1);
 			trip = new SimpleTripFormat(name, location, 0, 0, image, desc);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
