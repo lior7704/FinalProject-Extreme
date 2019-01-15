@@ -86,7 +86,7 @@ public class Spider {
 	}
 	
 	private boolean checkStride(String currentUrl, ArrayList<String> searchParams) {
-		if (!currentUrl.contains("#") && !currentUrl.contains(".html") && currentUrl.contains("stridetravle.com")) {
+		if (!currentUrl.contains("#") && !currentUrl.contains(".html") && currentUrl.contains("stridetravel.com")) {
 			return otherValidations(currentUrl, searchParams);
 		}
 		return false;
