@@ -66,17 +66,21 @@ public class Converters {
 
 	public static SimpleTripFormat lonleyPlanetConverter(String url) {
 		Document doc;
+		String name, desc, body, image = "No image found", location;
 		SimpleTripFormat trip = null;
 		try {
 			doc = Jsoup.connect(url).get();
 			Element title = doc.select("h1").first();
-			String name = title.text();
+			name = title.text();
 			Element text = doc.select("p").get(1);
-			String desc = text.text();
-			String body = doc.select("body").first().data();
-			String image = body.substring(body.indexOf("image"));
-			image = image.substring(8, image.indexOf(".jpg") + 4);
-			String location = body.substring(body.indexOf("addressLocality"));
+			desc = text.text();
+			body = doc.select("body").first().data();
+			// Placeholder when there is no image
+			if(!body.contains("https://s3.amazonaws.com/static-asset/poi-type-sights.png")) { 
+				image = body.substring(body.indexOf("image"));
+				image = image.substring(8, image.indexOf(".jpg") + 4);
+			}
+			location = body.substring(body.indexOf("addressLocality"));
 			location = location.substring(18, location.indexOf(",") - 1);
 			trip = new SimpleTripFormat(name, location, 0, image, desc, url);
 		} catch (IOException e) {
