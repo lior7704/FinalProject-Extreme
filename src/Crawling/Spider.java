@@ -9,7 +9,6 @@ import java.util.Set;
 
 import ExtremeUtils.Utils;
 import Parsing.Converters;
-import Parsing.SimpleTripFormat;
 import Parsing.TripFormat;
 
 public class Spider {
@@ -55,7 +54,7 @@ public class Spider {
 				body = leg.searchForWord(searchParams);
 				if (body != null) // parsing
 				{
-					SimpleTripFormat currTrip = null;
+					TripFormat currTrip = null;
 					//System.out.println(String.format("**Success** Word %s found at %s", searchParams, currentUrl));
 					numPagesGrabbed++;
 					if (this.site.equals(Utils.LONELY_PLANET)) {
@@ -121,11 +120,9 @@ public class Spider {
 	}
 
 	/**
-	 * Returns the next URL to visit (in the order that they were found). We also do
-	 * a check to make sure this method doesn't return a URL that has already been
+	 * Returns the next URL to visit (in the order that they were found). 
+	 * We also check to make sure this method doesn't return a URL that has already been
 	 * visited.
-	 * 
-	 * @return
 	 */
 	private String nextUrl() {
 		String nextUrl;
