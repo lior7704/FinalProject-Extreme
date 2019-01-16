@@ -45,7 +45,6 @@ public class Converters {
 				locationBuilder.append(element.text());
 			}
 			locationBuilder.append(": ");
-			System.err.println();
 			for (Element element : regions) {
 				if (regions.size() > 1 && !element.equals(regions.get(0)) && 
 					!element.equals(regions.get(regions.size() - 1)))

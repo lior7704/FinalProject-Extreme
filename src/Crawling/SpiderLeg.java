@@ -48,7 +48,7 @@ public class SpiderLeg {
 			return true;
 		} catch (IOException ioe) {
 			// We were not successful in our HTTP request
-			ioe.printStackTrace();
+			//System.err.println(ioe.getMessage());
 			return false;
 		}
 	}
@@ -63,7 +63,6 @@ public class SpiderLeg {
 	public String searchForWord(ArrayList<String> searchParams) {
 		// Defensive coding. This method should only be used after a successful crawl.
 		if (this.htmlDocument == null) {
-			System.out.println("ERROR! Call crawl() before performing analysis on the document");
 			return null;
 		}
 		//System.out.println("Searching for the word " + searchParams + "...");

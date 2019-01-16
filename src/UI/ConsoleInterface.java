@@ -3,22 +3,17 @@ package UI;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import Crawling.Spider;
 import ExtremeUtils.Utils;
-import Parsing.TripFormat;
 
 public class ConsoleInterface {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		
 		Scanner s = new Scanner(System.in);
-		List<TripFormat> trips;
 		HashSet<String> countries = getCountries();
 		boolean runMultipleSites = false;
 		PrintWriter pw = new PrintWriter(new File("results.txt"));
@@ -28,26 +23,26 @@ public class ConsoleInterface {
 		System.out.println("**********************************");
 		System.out.println();
 		System.out.println("Choose a trip site to search in:");
-		System.out.println("Lonely Planet");
-		System.out.println("Stride");
-		System.out.println("Both sites");
+		System.out.println("1) Lonely Planet");
+		System.out.println("2) Stride");
+		System.out.println("3) Both sites");
 		
 	
 		String siteName = s.nextLine();
-		String siteUrl, prefix = "", otherName = "", otherSite = "", otherPrefix = "";
+		String siteUrl = null, prefix = "", otherName = "", otherSite = "", otherPrefix = "";
 		
 		System.out.println();
 		
-		if(siteName.toLowerCase().equals(Utils.LONELY_PLANET.toLowerCase())) {
+		if(siteName.equals("1")) {
 			siteName = Utils.LONELY_PLANET;
 			siteUrl = Utils.LONELYPLANET_SITE;
 			prefix = Utils.LONELYPLANET_PREFIX;
 		}
-		else if(siteName.toLowerCase().equals(Utils.STRIDE.toLowerCase())){
+		else if(siteName.equals("2")){
 			siteName = Utils.STRIDE;
 			siteUrl = Utils.STRIDE_SITE;
 		}
-		else {
+		else if(siteName.equals("3")){
 			siteName = Utils.LONELY_PLANET;
 			siteUrl = Utils.LONELYPLANET_SITE;
 			prefix = Utils.LONELYPLANET_PREFIX;
@@ -56,6 +51,9 @@ public class ConsoleInterface {
 			otherSite = Utils.STRIDE_SITE;
 			
 			runMultipleSites = true;
+		}else {
+			System.out.println("Wrong input. Shutting down");
+			System.exit(0);
 		}
 		
 		String country = "";
@@ -93,8 +91,10 @@ public class ConsoleInterface {
 		}
 		
 		search.join();
+		
+		System.out.println("Search is complete. Check \"results.txt\"");
 		pw.close();
-
+		s.close();
 	}
 	
 	public static HashSet<String> getCountries() {
