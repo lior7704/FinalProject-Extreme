@@ -58,7 +58,7 @@ public class Converters {
 					locationBuilder.append(element.text());
 			}
 			location = locationBuilder.toString();
-			trip = new SimpleTripFormat(name, location, rating, image, desc);
+			trip = new SimpleTripFormat(name, location, rating, image, desc, url);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +79,7 @@ public class Converters {
 			image = image.substring(8, image.indexOf(".jpg") + 4);
 			String location = body.substring(body.indexOf("addressLocality"));
 			location = location.substring(18, location.indexOf(",") - 1);
-			trip = new SimpleTripFormat(name, location, 0, image, desc);
+			trip = new SimpleTripFormat(name, location, 0, image, desc, url);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

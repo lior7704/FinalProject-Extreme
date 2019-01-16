@@ -6,14 +6,16 @@ public class SimpleTripFormat extends TripFormat {
 	private float rating;
 	private String image;
 	private String description;
+	private String sourceUrl; 
 
-	public SimpleTripFormat(String name, String location, float rating, String image, String description) {
+	public SimpleTripFormat(String name, String location, float rating, String image, String description, String sourceUrl) {
 		super();
 		this.name = name;
 		this.location = location;
 		this.rating = rating;
 		this.image = image;
 		this.description = description;
+		this.sourceUrl = sourceUrl;
 	}
 
 	public String getName() {
@@ -55,10 +57,18 @@ public class SimpleTripFormat extends TripFormat {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getSourceUrl() {
+		return sourceUrl;
+	}
+
+	public void setSourceUrl(String sourceUrl) {
+		this.sourceUrl = sourceUrl;
+	}
 
 	@Override
 	public String toString() {
 		return "Trip Name: " + name + "\nLocation: " + location + "\nRating: " + rating + " out of 5\nimage: "
-				+ image + "\nDescription: " + description + "\n";
+				+ image + "\nDescription: " + description + "\nSource URL: " + sourceUrl;
 	}
 }
